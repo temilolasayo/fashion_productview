@@ -24,11 +24,34 @@
       body {
         font-family: "Montserrat";
       }
+      
 
     </style>
+        <script>
+          function totalAmount() {
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("amount").textContent;
+
+           
+
+
+                var e = document.getElementById("quantity");
+            var strUser = e.options[e.selectedIndex].value;
+
+             var amount = inputVal * strUser;
+
+            document.getElementById("totalAmount").textContent = "$ " + amount;
+
+
+            // Displaying the value
+
+          }
+     
+        </script>
   </head>
 
   <body>
+
     <!--  Header goes in here -->
     <div class="header"></div>
     <br />
@@ -111,7 +134,7 @@
                       letter-spacing: 0.1em;
                     "
                   >
-                    $500
+                    $<span  id="amount">500</span>
                   </p>
                 </div>
               </div>
@@ -189,11 +212,13 @@
                           name="quantity"
                           class="custom-select"
                           style="width: 150px;"
+                          id="quantity"
+                          onchange="totalAmount();"
                         >
-                          <option selected>1</option>
-                          <option value="volvo">2</option>
-                          <option value="fiat">3</option>
-                          <option value="audi">4</option> </select
+                          <option selected value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option> </select
                         ><br />
                       </div>
                     </div>
@@ -205,7 +230,7 @@
                 <div class="card-body" style="padding: 40px;">
                                     <div class="row">
                                       <div class="col-lg-8">
-                                            <span class="card-title" style="
+                                            <span class="card-title" id="totalAmount" style="
                                                                                                         font-style: normal;
                                                                                                         font-weight: 600;
                                                                                                         font-size: 29.8987px;
@@ -214,13 +239,13 @@
                                                                                                         align-items: center;
                                                                                                         text-align: center;
                                                                                                         letter-spacing: 0.1em;
-                                                                                                      ">$ 1000</span>
+                                                                                                      ">$ 500</span>
                                       </div>
                                     
                                       <div class="col-lg-4">
               <a href="#" class="btn btn-primary" style="background: #5230DB;
                                 border-radius: 8.6286px">Add to Cart</a>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <i id="favBtn" onclick="myFunction(this)" class="fa fa-heart-o" style="color: #fcda2b;" aria-hidden="true"></i>
                                       </div>
                                     </div>
 
@@ -552,18 +577,50 @@ letter-spacing: 0.02em; width:100%;" data-toggle="modal" data-target="#myModal">
                           
                                   <!-- Modal Header -->
                                   <div class="modal-header">
-                                    <h4 class="modal-title">Modal Heading</h4>
+                                    <div class="container text-center">
+                                            <div class="row">
+                                              <div class="col-lg-12">
+                                                                                    <p class="tex-center" style="font-style: normal;
+                                                                                    font-weight: bold;
+                                                                                    font-size: 25px;
+                                                                                    line-height: 30px;
+                                                                                    color: #000000;">Rate your experience</p>
+                                                                                    <hr style="width: 260px;border: 2px solid #5230DB;" />
+                                                                                    
+                                                                                        <div class="col-lg-12 text-center" style="color: rgba(196, 196, 196, 0.6);">
+                                                                                          <i class="fa fa-star fa-3x" aria-hidden="true"></i>
+                                                                                          <i class="fa fa-star  fa-3x" aria-hidden="true"></i>
+                                                                                          <i class="fa fa-star  fa-3x" aria-hidden="true"></i>
+                                                                                          <i class="fa fa-star  fa-3x" aria-hidden="true"></i>
+                                                                                          <i class="fa fa-star  fa-3x" aria-hidden="true"></i>
+                                                                                        </div>
+                                                </div>
+                                              </div>
+                                  </div>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   </div>
-                          
+                          <div class="clearfix"></div>
                                   <!-- Modal body -->
                                   <div class="modal-body">
-                                    Modal body..
-                                  </div>
-                          
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <form action="">
+                                          <div class="form-group">
+                                            <label for="heading"  class="sr-only">Heading:</label>
+                                            <input type="text" class="form-control" placeholder="Write a heading" id="heading">
+                                          </div>
+                                          <div class="form-group">                                         
+                                                  <label for="experience" class="sr-only">Experience</label>
+                                                  <textarea class="form-control" id="experience" rows="10" placeholder="Tell us about your experience"></textarea>
+                                              </textarea>
+                                          </div>
+                                            <div class="form-group">
+                                          
+                                            </div>
+                                          <div class="row">
+                                            <div class="col text-center">
+                                          <button type="submit" class="btn btn-primary" style="background: #5230DB;border: 1px solid #000000;box-sizing: border-box;">Submit</button>
+                                            </div></div>
+                                        </form>
+                                                                      
                                   </div>
                           
                                 </div>
@@ -788,5 +845,27 @@ letter-spacing: 0.02em; width:100%;" data-toggle="modal" data-target="#myModal">
 
     <!-- Footer goes in here -->
     <footer></footer>
+
+        <script>
+          //get the value of icon
+          var event = document.getElementById("favBtn")
+          function myFunction(event) {
+            //compare the class of the icon with fa-heart-o
+            if(event.classList[1] === "fa-heart-o")
+            {
+              //remove the class fa-heart-o
+            event.classList.remove("fa-heart-o");
+            //add class fa-heart
+            event.classList.add("fa-heart");
+            console.log("hey 1")
+            }
+            else{
+              //add class fa-heart-o
+              event.classList.add("fa-heart-o");
+              //remove class fa-heart
+              event.classList.remove("fa-heart");
+            }
+          }
+  </script>
   </body>
 </html>
